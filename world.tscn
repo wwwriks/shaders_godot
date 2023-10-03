@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://076qp7oe0pgb"]
+
+[ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://HDRIs/snow_field_puresky_4k.exr" id="1_37iv8"]
+[ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Ice.tres" id="2_netd8"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sp8o5"]
+panorama = ExtResource("1_37iv8")
+
+[sub_resource type="Sky" id="Sky_b83ww"]
+sky_material = SubResource("PanoramaSkyMaterial_sp8o5")
+
+[sub_resource type="Environment" id="Environment_qyb0u"]
+background_mode = 2
+background_energy_multiplier = 0.25
+sky = SubResource("Sky_b83ww")
+sky_rotation = Vector3(0, 3.31613, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
+material = ExtResource("2_netd8")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7ey7t"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qyb0u")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_x8jhw")
+
+[node name="Human Reference" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_7ey7t")
