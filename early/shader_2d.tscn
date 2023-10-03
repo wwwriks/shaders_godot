@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl5njynpw4qa4"]
+
+[ext_resource type="Texture2D" uid="uid://bwepwyhhy2hs" path="res://early/icon.svg" id="1_0c25a"]
+
+[sub_resource type="Shader" id="Shader_dqvmg"]
+code = "shader_type canvas_item;
+
+void vertex(){
+	VERTEX += vec2(cos(TIME * 2.0) * 50.0, sin(TIME * 2.0) * 100.0);
+}
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	COLOR = vec4(UV.x,UV.y,1.0,col.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45pgk"]
+shader = SubResource("Shader_dqvmg")
+
+[node name="Shader2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_45pgk")
+texture = ExtResource("1_0c25a")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_45pgk")
+position = Vector2(180, 60)
+texture = ExtResource("1_0c25a")

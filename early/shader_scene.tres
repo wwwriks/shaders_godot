@@ -1,4 +1,7 @@
-shader_type spatial;
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ckw4rdhnmudjf"]
+
+[sub_resource type="Shader" id="Shader_ygjr6"]
+code = "shader_type spatial;
 render_mode specular_toon;
 
 uniform sampler2D noise;
@@ -44,3 +47,26 @@ void fragment() {
 	ROUGHNESS = 0.01 * (1.0 - fresnel);
 	ALBEDO = vec3(0.01, 0.03, 0.05) + (0.1 * fresnel);
 }
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h6egx"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e15qt"]
+seamless = true
+noise = SubResource("FastNoiseLite_h6egx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x8iw0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j50ew"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_x8iw0")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_ygjr6")
+shader_parameter/height_scale = 0.5
+shader_parameter/time_speed = 0.125
+shader_parameter/noise = SubResource("NoiseTexture2D_e15qt")
+shader_parameter/normal_map = SubResource("NoiseTexture2D_j50ew")
