@@ -9,18 +9,22 @@
 
 [node name="Player" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("pivot_dir")]
 script = ExtResource("1_73sg8")
+pivot_dir = NodePath("Direction")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1tc03")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, -1.98423e-09, 0, 1, 0, 1.98423e-09, 0, 1, 0, 1.5, 0)
-script = ExtResource("2_xtwy5")
-
-[node name="Mesh" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7ey7t")
 skeleton = NodePath("../../..")
+
+[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam")]
+script = ExtResource("2_xtwy5")
+cam = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Body/Direction"]
+transform = Transform3D(1, 0, -1.98423e-09, 0, 1, 0, 1.98423e-09, 0, 1, 0, 1.5, 0)
