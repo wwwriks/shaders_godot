@@ -1,15 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=12 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
-[ext_resource type="Shader" path="res://Scripts/CoverSnow.gdshader" id="5_bbd0q"]
-[ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="6_veico"]
-[ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="7_1tm8p"]
-[ext_resource type="Texture2D" uid="uid://hp2k3frtcg5c" path="res://Materials/Ice/Ice003_4K-PNG_Roughness.png" id="8_4filq"]
-[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="9_dmtng"]
-[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="10_453cu"]
-[ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="11_aq1wa"]
+[ext_resource type="Material" uid="uid://c6e16vq4eqr20" path="res://Ice_Snow.tres" id="4_ouhiq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
 material = ExtResource("1_igrc5")
@@ -56,21 +50,8 @@ adjustment_saturation = 0.81
 
 [sub_resource type="BoxMesh" id="BoxMesh_x3hkg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmibu"]
-render_priority = 0
-shader = ExtResource("5_bbd0q")
-shader_parameter/snow_amount = 1.75
-shader_parameter/snow_softness = 7.0
-shader_parameter/snow_uv_scale = 1.0
-shader_parameter/albedo_tex = ExtResource("6_veico")
-shader_parameter/roughness_tex = ExtResource("8_4filq")
-shader_parameter/normal_tex = ExtResource("7_1tm8p")
-shader_parameter/snow_albedo_tex = ExtResource("9_dmtng")
-shader_parameter/snow_roughness_tex = ExtResource("11_aq1wa")
-shader_parameter/snow_normal_tex = ExtResource("10_453cu")
-
 [sub_resource type="SphereMesh" id="SphereMesh_gtu3f"]
-material = SubResource("ShaderMaterial_bmibu")
+material = ExtResource("4_ouhiq")
 
 [node name="World" type="Node3D"]
 
@@ -105,5 +86,5 @@ mesh = SubResource("BoxMesh_x3hkg")
 [node name="Player" parent="." instance=ExtResource("3_20gx3")]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.24583, 0.0209414, 0, -0.0209414, 1.24583, 0, 0, 0, 1.24601, -0.98787, 1.17678, -2.89348)
+transform = Transform3D(1.24531, 0.0417029, 0, -0.0417029, 1.24531, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
 mesh = SubResource("SphereMesh_gtu3f")

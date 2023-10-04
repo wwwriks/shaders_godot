@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c6e16vq4eqr20"]
+
+[ext_resource type="Shader" path="res://Scripts/CoverSnow.gdshader" id="1_m2tae"]
+[ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="2_0csjj"]
+[ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="3_ovt1t"]
+[ext_resource type="Texture2D" uid="uid://hp2k3frtcg5c" path="res://Materials/Ice/Ice003_4K-PNG_Roughness.png" id="4_obq2v"]
+[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="5_jphmn"]
+[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="6_mqpkv"]
+[ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="7_mnav7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m2tae")
+shader_parameter/snow_amount = 1.63
+shader_parameter/snow_softness = 1.97
+shader_parameter/snow_uv_scale = 0.985
+shader_parameter/albedo_tex = ExtResource("2_0csjj")
+shader_parameter/roughness_tex = ExtResource("4_obq2v")
+shader_parameter/normal_tex = ExtResource("3_ovt1t")
+shader_parameter/snow_albedo_tex = ExtResource("5_jphmn")
+shader_parameter/snow_roughness_tex = ExtResource("7_mnav7")
+shader_parameter/snow_normal_tex = ExtResource("6_mqpkv")
