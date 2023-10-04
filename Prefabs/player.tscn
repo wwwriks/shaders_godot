@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://r7r8y77rokm6"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMove.gd" id="1_1xex7"]
+[ext_resource type="Script" path="res://Scripts/RotateCamera.gd" id="2_qdjhr"]
+[ext_resource type="Texture2D" uid="uid://ciubuclktr138" path="res://Textures/Smoke30Frames.png" id="3_o005j"]
+[ext_resource type="Script" path="res://Scripts/AnimatePlayer.gd" id="4_mn4l1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1tc03"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7ey7t"]
+
+[sub_resource type="Gradient" id="Gradient_6btr6"]
+offsets = PackedFloat32Array(0, 0.19697, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.505882, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tdign"]
+gradient = SubResource("Gradient_6btr6")
+
+[sub_resource type="Curve" id="Curve_ecnhc"]
+_data = [Vector2(0, 0.547368), 0.0, 3.53655, 0, 0, Vector2(0.186441, 1), 0.145106, 0.145106, 0, 0, Vector2(1, 0.705263), -0.882549, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u678o"]
+curve = SubResource("Curve_ecnhc")
+
+[sub_resource type="Curve" id="Curve_kwjmg"]
+min_value = -1.0
+_data = [Vector2(0, 0.0105263), 0.0, 0.0, 0, 0, Vector2(1, -1), -0.161312, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4lrxl"]
+curve = SubResource("Curve_kwjmg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k3dlt"]
+lifetime_randomness = 0.24
+direction = Vector3(0, -0.5, -1)
+spread = 18.11
+gravity = Vector3(0, -0.1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+angular_velocity_min = -25.0
+angular_velocity_max = 25.0
+tangential_accel_min = -0.5
+tangential_accel_max = 0.5
+tangential_accel_curve = SubResource("CurveTexture_4lrxl")
+angle_min = -45.0
+angle_max = 45.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_u678o")
+color = Color(1, 1, 1, 0.407843)
+color_ramp = SubResource("GradientTexture1D_tdign")
+anim_speed_min = 0.5
+anim_speed_max = 0.5
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx5cf"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_o005j")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+grow_amount = 1.858
+distance_fade_max_distance = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_r0may"]
+lightmap_size_hint = Vector2i(4, 4)
+material = SubResource("StandardMaterial3D_nx5cf")
+size = Vector2(0.5, 0.5)
+
+[node name="Player" type="Node3D"]
+
+[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("pivot_dir")]
+script = ExtResource("1_1xex7")
+pivot_dir = NodePath("Direction")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1tc03")
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_7ey7t")
+skeleton = NodePath("../../..")
+
+[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam")]
+script = ExtResource("2_qdjhr")
+cam = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Body/Direction"]
+transform = Transform3D(1, 0, -1.98423e-09, 0, 1, 0, 1.98423e-09, 0, 1, 0, 1.5, 0)
+far = 1000.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Body/Direction/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32732e-09, -0.388262, -0.466956)
+emitting = false
+amount = 12
+lifetime = 2.33
+one_shot = true
+speed_scale = 1.75
+explosiveness = 0.6
+fixed_fps = 60
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_k3dlt")
+draw_pass_1 = SubResource("QuadMesh_r0may")
+
+[node name="Player Animator" type="Node3D" parent="." node_paths=PackedStringArray("breathPS")]
+script = ExtResource("4_mn4l1")
+breathPS = NodePath("../Body/Direction/Camera3D/GPUParticles3D")
+timeTilBreatheMin = 5.5
+timeTilBreatheMax = 7.0
