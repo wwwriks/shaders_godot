@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://r7r8y77rokm6"]
+[gd_scene load_steps=18 format=3 uid="uid://r7r8y77rokm6"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMove.gd" id="1_1xex7"]
 [ext_resource type="Script" path="res://Scripts/RotateCamera.gd" id="2_qdjhr"]
@@ -72,6 +72,15 @@ lightmap_size_hint = Vector2i(4, 4)
 material = SubResource("StandardMaterial3D_nx5cf")
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_y6335"]
+resource_name = "player_idle"
+loop_mode = 2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igxw3"]
+_data = {
+"player_idle": SubResource("Animation_y6335")
+}
+
 [node name="Player" type="Node3D"]
 
 [node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("pivot_dir")]
@@ -87,15 +96,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7ey7t")
 skeleton = NodePath("../../..")
 
-[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam")]
+[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam", "camWobble")]
 script = ExtResource("2_qdjhr")
-cam = NodePath("Camera3D")
+cam = NodePath("Camera Holder/AimWobble/Camera3D")
+camWobble = NodePath("Camera Holder/AimWobble")
 
-[node name="Camera3D" type="Camera3D" parent="Body/Direction"]
-transform = Transform3D(1, 0, -1.98423e-09, 0, 1, 0, 1.98423e-09, 0, 1, 0, 1.5, 0)
+[node name="Camera Holder" type="Node3D" parent="Body/Direction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="AimWobble" type="Node3D" parent="Body/Direction/Camera Holder"]
+
+[node name="Camera3D" type="Camera3D" parent="Body/Direction/Camera Holder/AimWobble"]
+transform = Transform3D(1, 0, -1.98423e-09, 0, 1, 0, 1.98423e-09, 0, 1, 0, 0, 0)
 far = 1000.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Body/Direction/Camera3D"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Body/Direction/Camera Holder/AimWobble/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32732e-09, -0.388262, -0.466956)
 emitting = false
 amount = 12
@@ -109,8 +124,16 @@ draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_k3dlt")
 draw_pass_1 = SubResource("QuadMesh_r0may")
 
-[node name="Player Animator" type="Node3D" parent="." node_paths=PackedStringArray("breathPS")]
+[node name="Animation" type="Node3D" parent="."]
+
+[node name="Player Animator" type="AnimationPlayer" parent="Animation"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_igxw3")
+}
+
+[node name="Breathe" type="Node3D" parent="Animation" node_paths=PackedStringArray("breathPS")]
 script = ExtResource("4_mn4l1")
-breathPS = NodePath("../Body/Direction/Camera3D/GPUParticles3D")
-timeTilBreatheMin = 5.5
-timeTilBreatheMax = 7.0
+breathPS = NodePath("../../Body/Direction/Camera Holder/AimWobble/Camera3D/GPUParticles3D")
+timeTilBreatheMin = 5.0
+timeTilBreatheMax = 8.0
