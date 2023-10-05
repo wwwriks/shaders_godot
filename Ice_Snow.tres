@@ -11,9 +11,9 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_m2tae")
-shader_parameter/snow_amount = 1.63
-shader_parameter/snow_softness = 1.97
-shader_parameter/snow_uv_scale = 0.985
+shader_parameter/snow_amount = 1.74
+shader_parameter/snow_softness = 12.005
+shader_parameter/snow_uv_scale = 0.79
 shader_parameter/albedo_tex = ExtResource("2_0csjj")
 shader_parameter/roughness_tex = ExtResource("4_obq2v")
 shader_parameter/normal_tex = ExtResource("3_ovt1t")

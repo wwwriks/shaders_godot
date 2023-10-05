@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=13 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
 [ext_resource type="Material" uid="uid://c6e16vq4eqr20" path="res://Ice_Snow.tres" id="4_ouhiq"]
+[ext_resource type="PackedScene" uid="uid://c171s0y8jborx" path="res://Models/bust/marble_bust_01_1k.gltf" id="5_ndexw"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
 material = ExtResource("1_igrc5")
@@ -86,5 +87,8 @@ mesh = SubResource("BoxMesh_x3hkg")
 [node name="Player" parent="." instance=ExtResource("3_20gx3")]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.24531, 0.0417029, 0, -0.0417029, 1.24531, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
+transform = Transform3D(-0.135627, -1.2386, 0, 1.2386, -0.135627, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
 mesh = SubResource("SphereMesh_gtu3f")
+
+[node name="marble_bust_01_1k" parent="." instance=ExtResource("5_ndexw")]
+transform = Transform3D(0.834094, 0.546452, 0.0753518, -0.0561993, -0.0517085, 0.99708, 0.548752, -0.835893, -0.0124196, 2.2813, 0.000499964, -3.68549)
