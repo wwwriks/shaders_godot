@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c6e16vq4eqr20"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://6v6wiemhsjcx"]
 
 [ext_resource type="Shader" path="res://Scripts/CoverSnow.gdshader" id="1_m2tae"]
 [ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="2_0csjj"]
