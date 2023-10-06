@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://r7r8y77rokm6"]
+[gd_scene load_steps=23 format=3 uid="uid://r7r8y77rokm6"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMove.gd" id="1_1xex7"]
 [ext_resource type="Script" path="res://Scripts/RotateCamera.gd" id="2_qdjhr"]
 [ext_resource type="Texture2D" uid="uid://ciubuclktr138" path="res://Textures/Smoke30Frames.png" id="3_o005j"]
+[ext_resource type="PackedScene" uid="uid://cky1la67q0k0j" path="res://Prefabs/snow_particles.tscn" id="4_8pd3l"]
 [ext_resource type="Script" path="res://Scripts/AnimatePlayer.gd" id="4_mn4l1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1tc03"]
@@ -273,6 +274,8 @@ local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_k3dlt")
 draw_pass_1 = SubResource("QuadMesh_r0may")
+
+[node name="Snow Particles" parent="Body" instance=ExtResource("4_8pd3l")]
 
 [node name="Animation" type="Node3D" parent="."]
 

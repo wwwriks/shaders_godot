@@ -9,7 +9,7 @@ uniform int num_layers;
 uniform float depth;
 
 void fragment() {
-	vec2 base_uv = UV * 500.0;
+	vec2 base_uv = UV * 50.0;
 	mat3 tangent2view = mat3(TANGENT, NORMAL, -BINORMAL);
 	vec3 t_view = VIEW * tangent2view;
 	vec2 move_uv = t_view.xz;

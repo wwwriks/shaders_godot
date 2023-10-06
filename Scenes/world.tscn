@@ -9,8 +9,7 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
 material = ExtResource("1_igrc5")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v2p6v"]
-size = Vector3(1, 0.001, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1uys"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
@@ -57,15 +56,14 @@ material = ExtResource("4_ouhiq")
 [node name="World" type="Node3D"]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(2500, 0, 0, 0, 1, 0, 0, 0, 2500, 0.0197043, 0, 0.000808954)
+transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
 mesh = SubResource("PlaneMesh_x8jhw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-transform = Transform3D(0.0004, 0, 0, 0, 1, 0, 0, 0, 0.0004, -7.88172e-06, 0, -3.23582e-07)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-transform = Transform3D(8024.07, 0, 0, 0, 1, 0, 0, 0, 8024.07, 0, 0, 0)
-shape = SubResource("BoxShape3D_v2p6v")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_h1uys")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.777957, 0.358605, -0.515932, -0.0350097, 0.844596, 0.534258, 0.627341, -0.397567, 0.669614, 0, 0, 0)

@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cky1la67q0k0j"]
+
+[ext_resource type="Texture2D" uid="uid://lax37b2dtck8" path="res://Textures/snog.png" id="1_l8wsd"]
+
+[sub_resource type="Gradient" id="Gradient_pfrx1"]
+offsets = PackedFloat32Array(0, 0.268939, 0.560606, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wbf8g"]
+gradient = SubResource("Gradient_pfrx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8iboq"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 50)
+direction = Vector3(0.1, 0, 0.1)
+gravity = Vector3(0, -4, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+angular_velocity_max = 1.0
+damping_max = 1.0
+angle_min = -90.0
+angle_max = 90.0
+scale_min = 0.1
+scale_max = 0.15
+color = Color(1, 1, 1, 0.835294)
+color_ramp = SubResource("GradientTexture1D_wbf8g")
+turbulence_enabled = true
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 8.3
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+collision_mode = 1
+collision_friction = 0.25
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_datsn"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_l8wsd")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 9.88
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+proximity_fade_distance = 0.25
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i45j0"]
+material = SubResource("StandardMaterial3D_datsn")
+orientation = 2
+
+[node name="Snow Particles" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.6607, 0)
+amount = 10000
+lifetime = 10.0
+preprocess = 5.0
+fixed_fps = 60
+visibility_aabb = AABB(-4, -42.5978, -4, 8, 81.0505, 8)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_8iboq")
+draw_pass_1 = SubResource("PlaneMesh_i45j0")
