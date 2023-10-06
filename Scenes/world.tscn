@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
-[ext_resource type="Material" uid="uid://6v6wiemhsjcx" path="res://Ice_Snow.tres" id="4_ouhiq"]
+[ext_resource type="Material" uid="uid://c6e16vq4eqr20" path="res://Ice_Snow.tres" id="4_ouhiq"]
 [ext_resource type="PackedScene" uid="uid://c171s0y8jborx" path="res://Models/bust/marble_bust_01_1k.gltf" id="5_ndexw"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
