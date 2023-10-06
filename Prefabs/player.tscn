@@ -72,77 +72,6 @@ lightmap_size_hint = Vector2i(4, 4)
 material = SubResource("StandardMaterial3D_nx5cf")
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="Animation" id="Animation_y6335"]
-resource_name = "player_idle"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Direction/Camera Holder:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Direction/Camera Holder:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2),
-"points": PackedFloat32Array(1.5, 0, 0, 0.4, -0.0279276, 1.46879, -0.383333, 0, 0.45, 0, 1.5, -0.5, -0.0284855, 0, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Direction/Camera Holder:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Direction/Camera Holder:rotation:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 1.4, -0.0157543, -0.01494, -0.25, 0, 0.25, 0, 0, -1.6, -0.0151964, 0.25, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Body/Direction/Camera Holder:rotation:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Body/Direction/Camera Holder:rotation:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2.3, 5)
-}
-
 [sub_resource type="Animation" id="Animation_f8ctq"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -212,6 +141,77 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_y6335"]
+resource_name = "player_idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Direction/Camera Holder:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Direction/Camera Holder:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(1.5, 0, 0, 0.3, 0.0169466, 1.48103, -0.6, 0.0120401, 0.577721, -0.0115931, 1.5, -0.4, -0.0165322, 0, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Direction/Camera Holder:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Direction/Camera Holder:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1, 0.00381857, -0.00694739, -0.510286, 0.000845187, 0.5, -0.000828151, 0, -0.6, -0.00218552, 0.25, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Direction/Camera Holder:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Direction/Camera Holder:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.3, 5)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igxw3"]
 _data = {
 "RESET": SubResource("Animation_f8ctq"),
@@ -229,7 +229,7 @@ states/Start/position = Vector2(211, 90)
 states/player_idle/node = SubResource("AnimationNodeAnimation_qalj7")
 states/player_idle/position = Vector2(347, 90)
 transitions = ["Start", "player_idle", SubResource("AnimationNodeStateMachineTransition_6kbel")]
-graph_offset = Vector2(-81, -48)
+graph_offset = Vector2(-65, -21)
 
 [node name="Player" type="Node3D"]
 
@@ -246,9 +246,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7ey7t")
 skeleton = NodePath("../../..")
 
-[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam")]
+[node name="Direction" type="Node3D" parent="Body" node_paths=PackedStringArray("cam", "character")]
 script = ExtResource("2_qdjhr")
 cam = NodePath("Camera Holder/AimWobble/Camera3D")
+character = NodePath("..")
 
 [node name="Camera Holder" type="Node3D" parent="Body/Direction"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

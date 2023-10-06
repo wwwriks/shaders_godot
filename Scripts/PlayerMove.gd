@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 @export var pivot_dir: Node3D
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 10
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 5
 
 
 func _process(delta):
