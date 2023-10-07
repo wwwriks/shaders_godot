@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8xxfg8mcnxkd"]
+
+[ext_resource type="Texture2D" uid="uid://csib2s1icsdfl" path="res://Models/Cargo/cargo.png" id="1_c478j"]
+
+[resource]
+albedo_texture = ExtResource("1_c478j")
+roughness = 0.85
+heightmap_scale = -16.0
