@@ -18,15 +18,14 @@ void fragment() {
 	vec3 ice_n = texture(ice_normal, UV).rgb;
 	float ice_r = texture(ice_roughness, UV).r;
 	
-	float snow_mask = COLOR.r;
+	float snow_mask = 1.0;
 	
 	ALBEDO = mix(ice_a, snow_a, snow_mask);
 	NORMAL_MAP = mix(ice_n, snow_n, snow_mask);
 	ROUGHNESS = mix(ice_r, snow_r, snow_mask);
 }
 
-void vertex(){
-	VERTEX.rgb = vec3(1.0, 0.0, 0.0);
-	float snow_mask = COLOR.r;
-	VERTEX.y += snow_mask * snow_height;
+void vertex() {
+	float snow_mask = 1.0;
+	//VERTEX.y += snow_mask * snow_height;
 }

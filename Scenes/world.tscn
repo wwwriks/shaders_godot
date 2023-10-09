@@ -1,18 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=24 format=3 uid="uid://bk1xknhnvycay"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
 [ext_resource type="Material" uid="uid://6v6wiemhsjcx" path="res://Ice_Snow.tres" id="4_ouhiq"]
-[ext_resource type="PackedScene" uid="uid://67npyw1fepsf" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
-[ext_resource type="PackedScene" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
-[ext_resource type="Shader" path="res://Scenes/SnowInteractable.gdshader" id="7_u001r"]
+[ext_resource type="PackedScene" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
+[ext_resource type="PackedScene" uid="uid://jdp2gf6ihohj" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
+[ext_resource type="Shader" path="res://Scripts/SnowInteractable.gdshader" id="7_s72gx"]
 [ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="8_astyv"]
 [ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="9_e5tor"]
 [ext_resource type="Texture2D" uid="uid://hp2k3frtcg5c" path="res://Materials/Ice/Ice003_4K-PNG_Roughness.png" id="10_0550n"]
 [ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="11_putsb"]
 [ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="12_ywwfb"]
 [ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="13_rw474"]
+[ext_resource type="Script" path="res://Scenes/SubViewport.gd" id="14_15opa"]
+[ext_resource type="Texture2D" uid="uid://ciqnfl7c5x203" path="res://Textures/dot.png" id="15_82grn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
@@ -61,7 +63,7 @@ material = ExtResource("1_igrc5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vna0u"]
 render_priority = 0
-shader = ExtResource("7_u001r")
+shader = ExtResource("7_s72gx")
 shader_parameter/uv_scale = 1.0
 shader_parameter/snow_height = 1.0
 shader_parameter/snow_albedo = ExtResource("11_putsb")
@@ -86,11 +88,9 @@ environment = SubResource("Environment_on2b7")
 
 [node name="marble_bust_01_1k" parent="." instance=ExtResource("6_31hqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673342, 0.693127, -3.00527)
-visible = false
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="sphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.135627, -1.2386, 0, 1.2386, -0.135627, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
-visible = false
 mesh = SubResource("SphereMesh_gtu3f")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -130,6 +130,20 @@ light_color = Color(0.517647, 0.643137, 0.74902, 1)
 light_energy = 0.363
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+[node name="Snow" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0.4, 0)
 mesh = SubResource("PlaneMesh_o08bj")
+
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("player", "paint_brush")]
+size = Vector2i(256, 256)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+script = ExtResource("14_15opa")
+player = NodePath("../Player")
+world_extents = Rect2(0, 0, 30, 30)
+paint_brush = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport"]
+texture = ExtResource("15_82grn")
+
+[node name="Node3D" type="Node3D" parent="."]
