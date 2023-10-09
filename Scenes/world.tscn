@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=22 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
 [ext_resource type="Material" uid="uid://6v6wiemhsjcx" path="res://Ice_Snow.tres" id="4_ouhiq"]
-[ext_resource type="PackedScene" uid="uid://c171s0y8jborx" path="res://Models/bust/marble_bust_01_1k.gltf" id="5_ndexw"]
+[ext_resource type="PackedScene" uid="uid://67npyw1fepsf" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
 [ext_resource type="PackedScene" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
-material = ExtResource("1_igrc5")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h1uys"]
+[ext_resource type="Shader" path="res://Scenes/SnowInteractable.gdshader" id="7_u001r"]
+[ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="8_astyv"]
+[ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="9_e5tor"]
+[ext_resource type="Texture2D" uid="uid://hp2k3frtcg5c" path="res://Materials/Ice/Ice003_4K-PNG_Roughness.png" id="10_0550n"]
+[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="11_putsb"]
+[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="12_ywwfb"]
+[ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="13_rw474"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
@@ -52,53 +54,82 @@ adjustment_saturation = 0.81
 [sub_resource type="SphereMesh" id="SphereMesh_gtu3f"]
 material = ExtResource("4_ouhiq")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_x8jhw"]
+material = ExtResource("1_igrc5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1uys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vna0u"]
+render_priority = 0
+shader = ExtResource("7_u001r")
+shader_parameter/uv_scale = 1.0
+shader_parameter/snow_height = 1.0
+shader_parameter/snow_albedo = ExtResource("11_putsb")
+shader_parameter/snow_normal = ExtResource("12_ywwfb")
+shader_parameter/snow_roughness = ExtResource("13_rw474")
+shader_parameter/ice_albedo = ExtResource("8_astyv")
+shader_parameter/ice_normal = ExtResource("9_e5tor")
+shader_parameter/ice_roughness = ExtResource("10_0550n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o08bj"]
+material = SubResource("ShaderMaterial_vna0u")
+subdivide_width = 32
+subdivide_depth = 32
+
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120926, 0.00727379, -0.00147629)
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
-mesh = SubResource("PlaneMesh_x8jhw")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_h1uys")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.777957, 0.358605, -0.515932, -0.0350097, 0.844596, 0.534258, 0.627341, -0.397567, 0.669614, 0, 0, 0)
-light_color = Color(0.517647, 0.643137, 0.74902, 1)
-light_energy = 0.363
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_on2b7")
 
 [node name="Player" parent="." instance=ExtResource("3_20gx3")]
 
+[node name="marble_bust_01_1k" parent="." instance=ExtResource("6_31hqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673342, 0.693127, -3.00527)
+visible = false
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.135627, -1.2386, 0, 1.2386, -0.135627, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
 visible = false
 mesh = SubResource("SphereMesh_gtu3f")
 
-[node name="marble_bust_01_1k" parent="." instance=ExtResource("5_ndexw")]
-transform = Transform3D(2.08905, -0.0124855, 0.0705367, 0.00642302, 2.08264, 0.17844, -0.0713447, -0.178119, 2.08146, 2.2813, 0.000499964, -3.68549)
-visible = false
+[node name="Environment" type="Node3D" parent="."]
 
-[node name="cargo2" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo2" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99879, -0.00727379, -7.99852)
 
-[node name="cargo3" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo3" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(0.753655, 0, 0.65727, 0, 1, 0, -0.65727, 0, 0.753655, -8.77885, -0.00727379, -13.8364)
 
-[node name="cargo5" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo5" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(0.758908, 0, 0.651198, 0, 1, 0, -0.651198, 0, 0.758908, -13.2565, -0.00727379, -9.24808)
 
-[node name="cargo4" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo4" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(0.75377, 0, 0.657138, 0, 1, 0, -0.657138, 0, 0.75377, -11.396, -0.00727379, -11.9484)
 
-[node name="cargo6" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo6" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(0.949754, 0, -0.312998, 0, 1, 0, 0.312998, 0, 0.949754, -11.2343, 3.24432, -11.3136)
 
-[node name="cargo" parent="." instance=ExtResource("6_w8g0t")]
+[node name="cargo" parent="Environment" instance=ExtResource("6_w8g0t")]
 transform = Transform3D(0.990358, 0, -0.138534, 0, 1, 0, 0.138534, 0, 0.990358, 7.05082, 3.22673, -8.07653)
+
+[node name="Floor" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
+mesh = SubResource("PlaneMesh_x8jhw")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_h1uys")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.777957, 0.358605, -0.515931, -0.0350097, 0.844596, 0.534258, 0.627341, -0.397567, 0.669614, 0, 0, 0)
+light_color = Color(0.517647, 0.643137, 0.74902, 1)
+light_energy = 0.363
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0.4, 0)
+mesh = SubResource("PlaneMesh_o08bj")
