@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerMove.gd" id="1_1xex7"]
 [ext_resource type="Script" path="res://Scripts/RotateCamera.gd" id="2_qdjhr"]
 [ext_resource type="Texture2D" uid="uid://ciubuclktr138" path="res://Textures/Smoke30Frames.png" id="3_o005j"]
-[ext_resource type="PackedScene" path="res://Prefabs/snow_particles.tscn" id="4_8pd3l"]
+[ext_resource type="PackedScene" uid="uid://cky1la67q0k0j" path="res://Prefabs/snow_particles.tscn" id="4_8pd3l"]
 [ext_resource type="Script" path="res://Scripts/AnimatePlayer.gd" id="4_mn4l1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1tc03"]

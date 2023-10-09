@@ -6,9 +6,10 @@ extends Node3D
 @export var character: CharacterBody3D = null
 var currentWobble: float = 0
 var currentWobbleWalk: float = 0
-var wobbleLerpAmount: float = 10
+var wobbleLerpAmount: float = 7.5
 var wobbleLerpAmountWalk: float = 5
-var wobbleStrength: float = 0.0025
+var wobbleStrengthWalk: float = 0.005
+var wobbleStrength: float = 0.001
 var walkspeedAlongX = 0
 var walkspeedAlongXMultiplier = 10
 var currentAim = 0
@@ -27,7 +28,7 @@ func _process(delta):
 	
 	currentWobble = lerp(currentWobble, currentAim, wobbleLerpAmount * delta)
 	currentWobbleWalk = lerp(currentWobbleWalk, walkspeedAlongX, wobbleLerpAmountWalk * delta)
-	cam.rotation.z = (currentWobble + currentWobbleWalk) * wobbleStrength
+	cam.rotation.z = currentWobble * wobbleStrength + currentWobbleWalk * wobbleStrengthWalk
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
