@@ -9,10 +9,20 @@ var rng: RandomNumberGenerator
 
 func _init():
 	rng = RandomNumberGenerator.new()
+	timeTilBreatheActual = get_breathe_time()
 
 func _process(delta):
+	if timeTilBreatheMin == 0.0 && timeTilBreatheMax == 0.0:
+		return
+	
 	timeSinceBreathe += delta
 	if timeSinceBreathe > timeTilBreatheActual:
-		timeTilBreatheActual = rng.randf_range(timeTilBreatheMin, timeTilBreatheMax)
+		timeTilBreatheActual = get_breathe_time()
 		timeSinceBreathe = 0
-		breathPS.emitting = true
+		play_breathe_fx()
+
+func get_breathe_time():
+	return rng.randf_range(timeTilBreatheMin, timeTilBreatheMax)
+
+func play_breathe_fx():
+	breathPS.emitting = true

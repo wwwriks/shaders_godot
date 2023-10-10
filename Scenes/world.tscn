@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bk1xknhnvycay"]
+[gd_scene load_steps=24 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
 [ext_resource type="Material" uid="uid://6v6wiemhsjcx" path="res://Ice_Snow.tres" id="4_ouhiq"]
-[ext_resource type="PackedScene" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
-[ext_resource type="PackedScene" uid="uid://jdp2gf6ihohj" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
+[ext_resource type="PackedScene" uid="uid://67npyw1fepsf" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
+[ext_resource type="PackedScene" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
 [ext_resource type="Shader" path="res://Scripts/SnowInteractable.gdshader" id="7_s72gx"]
 [ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="8_astyv"]
 [ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="9_e5tor"]
@@ -88,9 +88,11 @@ environment = SubResource("Environment_on2b7")
 
 [node name="marble_bust_01_1k" parent="." instance=ExtResource("6_31hqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673342, 0.693127, -3.00527)
+visible = false
 
 [node name="sphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.135627, -1.2386, 0, 1.2386, -0.135627, 0, 0, 0, 1.24601, -0.987459, 1.17678, -2.89367)
+visible = false
 mesh = SubResource("SphereMesh_gtu3f")
 
 [node name="Environment" type="Node3D" parent="."]

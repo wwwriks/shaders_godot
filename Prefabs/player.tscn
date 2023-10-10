@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerMove.gd" id="1_1xex7"]
 [ext_resource type="Script" path="res://Scripts/RotateCamera.gd" id="2_qdjhr"]
 [ext_resource type="Texture2D" uid="uid://ciubuclktr138" path="res://Textures/Smoke30Frames.png" id="3_o005j"]
-[ext_resource type="PackedScene" path="res://Prefabs/snow_particles.tscn" id="4_8pd3l"]
+[ext_resource type="PackedScene" uid="uid://cky1la67q0k0j" path="res://Prefabs/snow_particles.tscn" id="4_8pd3l"]
 [ext_resource type="Script" path="res://Scripts/AnimatePlayer.gd" id="4_mn4l1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1tc03"]
@@ -212,6 +212,20 @@ tracks/5/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 2.3, 5)
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Animation/Breathe")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_breathe_fx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igxw3"]
 _data = {
@@ -293,5 +307,5 @@ active = true
 [node name="Breathe" type="Node3D" parent="Animation" node_paths=PackedStringArray("breathPS")]
 script = ExtResource("4_mn4l1")
 breathPS = NodePath("../../Body/Direction/Camera Holder/AimWobble/Camera3D/GPUParticles3D")
-timeTilBreatheMin = 5.0
-timeTilBreatheMax = 8.0
+timeTilBreatheMin = 0.0
+timeTilBreatheMax = 0.0
