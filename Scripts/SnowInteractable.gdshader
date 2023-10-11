@@ -6,6 +6,7 @@ uniform sampler2D snow_roughness;
 uniform sampler2D ice_albedo;
 uniform sampler2D ice_normal;
 uniform sampler2D ice_roughness;
+uniform sampler2D dynamic_snow_mask;
 uniform float uv_scale = 1.0;
 uniform float snow_height = 1.0;
 
@@ -18,7 +19,7 @@ void fragment() {
 	vec3 ice_n = texture(ice_normal, UV).rgb;
 	float ice_r = texture(ice_roughness, UV).r;
 	
-	float snow_mask = 1.0;
+	float snow_mask = texture(dynamic_snow_mask, UV).r;
 	
 	ALBEDO = mix(ice_a, snow_a, snow_mask);
 	NORMAL_MAP = mix(ice_n, snow_n, snow_mask);
@@ -26,6 +27,6 @@ void fragment() {
 }
 
 void vertex() {
-	float snow_mask = 1.0;
-	//VERTEX.y += snow_mask * snow_height;
+	float snow_mask = texture(dynamic_snow_mask, UV).r;
+	VERTEX.y = snow_mask * snow_height;
 }
