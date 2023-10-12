@@ -20,12 +20,14 @@ void fragment() {
 	vec3 ice_n = texture(ice_normal, uv).rgb;
 	float ice_r = texture(ice_roughness, uv).r;
 	
-	float snow_mask = texture(dynamic_snow_mask, UV).a + 1.0;
-	snow_mask = (snow_mask - 1.0);
+	float snow_mask = texture(dynamic_snow_mask, UV).a + 0.5;
+	snow_mask -= 1.0;
 	
 	ALBEDO = mix(snow_a, ice_a, snow_mask);
 	NORMAL_MAP = mix(snow_n, ice_n, snow_mask);
 	ROUGHNESS = mix(snow_r, ice_r, snow_mask);
+	
+	//ALBEDO = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 }
 
 void vertex() {

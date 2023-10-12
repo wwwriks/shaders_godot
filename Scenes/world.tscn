@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=28 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="12_ywwfb"]
 [ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="13_rw474"]
 [ext_resource type="Script" path="res://Scenes/SubViewport.gd" id="14_15opa"]
+[ext_resource type="Shader" path="res://Scenes/Normalizer.gdshader" id="14_aoguu"]
 [ext_resource type="Texture2D" uid="uid://cca5qvs620m46" path="res://Textures/dot.png" id="15_82grn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
@@ -85,6 +86,14 @@ material = SubResource("ShaderMaterial_vna0u")
 subdivide_width = 128
 subdivide_depth = 128
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27q47"]
+render_priority = 0
+shader = ExtResource("14_aoguu")
+
+[sub_resource type="SphereMesh" id="SphereMesh_t33ao"]
+lightmap_size_hint = Vector2i(17, 9)
+material = SubResource("ShaderMaterial_27q47")
+
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120926, 0.00727379, -0.00147629)
 
@@ -142,6 +151,10 @@ shadow_enabled = true
 [node name="Snow" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_o08bj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39371, 1.24075, 0)
+mesh = SubResource("SphereMesh_t33ao")
 
 [node name="Node3D" type="Node3D" parent="."]
 
