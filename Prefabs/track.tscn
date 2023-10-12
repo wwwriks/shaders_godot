@@ -1,0 +1,26 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh1ssgigascu5"]
+
+[ext_resource type="PackedScene" uid="uid://c42lipy5ba6rv" path="res://Models/traintracks/ufekaevdw_LOD0.fbx" id="1_i664o"]
+[ext_resource type="Shader" path="res://Scripts/CoverSnow.gdshader" id="2_kw8iw"]
+[ext_resource type="Texture2D" uid="uid://bv5jt1qm4co8y" path="res://Models/traintracks/ufekaevdw_2K_Albedo.jpg" id="3_2a05n"]
+[ext_resource type="Texture2D" uid="uid://bx803bmqu804u" path="res://Models/traintracks/ufekaevdw_2K_Normal_LOD0.jpg" id="4_1p10y"]
+[ext_resource type="Texture2D" uid="uid://c0fx0hobjongo" path="res://Models/traintracks/ufekaevdw_2K_Roughness.jpg" id="5_rm0jw"]
+[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="6_6e313"]
+[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="7_clhov"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mywqa"]
+render_priority = 0
+shader = ExtResource("2_kw8iw")
+shader_parameter/snow_amount = 1.0
+shader_parameter/snow_softness = 10.0
+shader_parameter/snow_uv_scale = 1.0
+shader_parameter/albedo_tex = ExtResource("3_2a05n")
+shader_parameter/roughness_tex = ExtResource("5_rm0jw")
+shader_parameter/normal_tex = ExtResource("4_1p10y")
+shader_parameter/snow_albedo_tex = ExtResource("6_6e313")
+shader_parameter/snow_normal_tex = ExtResource("7_clhov")
+
+[node name="tracks" instance=ExtResource("1_i664o")]
+
+[node name="Aset_modular__M_ufekaevdw_LOD0" parent="RootNode" index="0"]
+material_override = SubResource("ShaderMaterial_mywqa")

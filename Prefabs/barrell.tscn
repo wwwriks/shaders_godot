@@ -1,0 +1,29 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvcshssdne54c"]
+
+[ext_resource type="PackedScene" uid="uid://8imds3tqshcs" path="res://Models/barrells/tewscfuda_LOD0.fbx" id="1_86btt"]
+[ext_resource type="Shader" path="res://Scripts/CoverSnow.gdshader" id="2_xwixm"]
+[ext_resource type="Texture2D" uid="uid://dkmr0kdr03nxy" path="res://Models/barrells/tewscfuda_2K_Albedo.jpg" id="3_yvlxa"]
+[ext_resource type="Texture2D" uid="uid://cer5guic0hark" path="res://Models/barrells/tewscfuda_2K_Normal_LOD0.jpg" id="4_4v4yg"]
+[ext_resource type="Texture2D" uid="uid://djofmbn135pir" path="res://Models/barrells/tewscfuda_2K_Roughness.jpg" id="5_7ldrw"]
+[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="6_d2mnq"]
+[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="7_yssq3"]
+[ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="8_7hn4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgxtm"]
+render_priority = 0
+shader = ExtResource("2_xwixm")
+shader_parameter/snow_amount = 2.495
+shader_parameter/snow_softness = 1.59
+shader_parameter/snow_uv_scale = 2.71
+shader_parameter/albedo_tex = ExtResource("3_yvlxa")
+shader_parameter/roughness_tex = ExtResource("5_7ldrw")
+shader_parameter/normal_tex = ExtResource("4_4v4yg")
+shader_parameter/snow_albedo_tex = ExtResource("6_d2mnq")
+shader_parameter/snow_roughness_tex = ExtResource("8_7hn4x")
+shader_parameter/snow_normal_tex = ExtResource("7_yssq3")
+
+[node name="barrell" instance=ExtResource("1_86btt")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="Aset_metal_M_tewscfuda_LOD0" parent="RootNode" index="0"]
+material_override = SubResource("ShaderMaterial_tgxtm")

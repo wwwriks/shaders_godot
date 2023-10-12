@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://4fq71br878l8"]
+
+[ext_resource type="Texture2D" uid="uid://dkmr0kdr03nxy" path="res://Models/barrells/tewscfuda_2K_Albedo.jpg" id="1_ir2yu"]
+[ext_resource type="Texture2D" uid="uid://cer5guic0hark" path="res://Models/barrells/tewscfuda_2K_Normal_LOD0.jpg" id="1_shrqe"]
+[ext_resource type="Texture2D" uid="uid://ce1l255gjg8qf" path="res://Models/barrells/tewscfuda_2K_Displacement.jpg" id="2_cp1oa"]
+[ext_resource type="Texture2D" uid="uid://djofmbn135pir" path="res://Models/barrells/tewscfuda_2K_Roughness.jpg" id="2_nt2nn"]
+
+[resource]
+albedo_texture = ExtResource("1_ir2yu")
+roughness_texture = ExtResource("2_nt2nn")
+normal_enabled = true
+normal_texture = ExtResource("1_shrqe")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_cp1oa")
