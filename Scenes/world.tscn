@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="12_ywwfb"]
 [ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="13_rw474"]
 [ext_resource type="Script" path="res://Scenes/SubViewport.gd" id="14_15opa"]
-[ext_resource type="Texture2D" uid="uid://ciqnfl7c5x203" path="res://Textures/dot.png" id="15_82grn"]
+[ext_resource type="Texture2D" uid="uid://cca5qvs620m46" path="res://Textures/dot.png" id="15_82grn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
