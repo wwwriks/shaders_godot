@@ -68,8 +68,9 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_s72gx")
-shader_parameter/uv_scale = 1.0
-shader_parameter/snow_height = 1.0
+shader_parameter/uv_scale = 3.5
+shader_parameter/snow_height = 0.425
+shader_parameter/offset = 0.25
 shader_parameter/snow_albedo = ExtResource("11_putsb")
 shader_parameter/snow_normal = ExtResource("12_ywwfb")
 shader_parameter/snow_roughness = ExtResource("13_rw474")
@@ -149,6 +150,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" node_paths=PackedStringArray("player", "paint_brush")]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_clear_mode = 2
@@ -159,5 +161,5 @@ world_extents = Rect2(0, 0, 60, 60)
 paint_brush = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("15_82grn")

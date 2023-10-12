@@ -9,24 +9,26 @@ uniform sampler2D ice_roughness;
 uniform sampler2D dynamic_snow_mask;
 uniform float uv_scale = 1.0;
 uniform float snow_height = 1.0;
+uniform float offset = 0.5;
 
 void fragment() {
 	vec2 uv = UV * uv_scale;
-	vec3 snow_a = texture(snow_albedo, UV).rgb;
-	vec3 snow_n = texture(snow_normal, UV).rgb;
-	float snow_r = texture(snow_roughness, UV).r;
-	vec3 ice_a = texture(ice_albedo, UV).rgb;
-	vec3 ice_n = texture(ice_normal, UV).rgb;
-	float ice_r = texture(ice_roughness, UV).r;
+	vec3 snow_a = texture(snow_albedo, uv).rgb;
+	vec3 snow_n = texture(snow_normal, uv).rgb;
+	float snow_r = texture(snow_roughness, uv).r;
+	vec3 ice_a = texture(ice_albedo, uv).rgb;
+	vec3 ice_n = texture(ice_normal, uv).rgb;
+	float ice_r = texture(ice_roughness, uv).r;
 	
-	float snow_mask = texture(dynamic_snow_mask, UV).r;
+	float snow_mask = texture(dynamic_snow_mask, UV).a + 1.0;
+	snow_mask = (snow_mask - 1.0);
 	
-	ALBEDO = mix(ice_a, snow_a, snow_mask);
-	NORMAL_MAP = mix(ice_n, snow_n, snow_mask);
-	ROUGHNESS = mix(ice_r, snow_r, snow_mask);
+	ALBEDO = mix(snow_a, ice_a, snow_mask);
+	NORMAL_MAP = mix(snow_n, ice_n, snow_mask);
+	ROUGHNESS = mix(snow_r, ice_r, snow_mask);
 }
 
 void vertex() {
-	float snow_mask = texture(dynamic_snow_mask, UV).r;
-	VERTEX.y = snow_mask * snow_height;
+	float snow_mask = texture(dynamic_snow_mask, UV).a * -1.0;
+	VERTEX.y = (snow_mask * snow_height) + snow_height * snow_height + offset;
 }
