@@ -166,13 +166,15 @@ mesh = SubResource("PlaneMesh_o08bj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39371, 1.24075, 0)
+visible = false
 mesh = SubResource("SphereMesh_t33ao")
 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -262.0
+offset_right = -6.0
+offset_bottom = 256.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" node_paths=PackedStringArray("player", "paint_brush")]
 transparent_bg = true
