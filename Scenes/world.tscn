@@ -22,13 +22,13 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
 
-[sub_resource type="Sky" id="Sky_o7xhc"]
+[sub_resource type="Sky" id="Sky_qtghm"]
 sky_material = SubResource("PanoramaSkyMaterial_rpjvi")
 
 [sub_resource type="Environment" id="Environment_on2b7"]
 background_mode = 2
 background_energy_multiplier = 0.33
-sky = SubResource("Sky_o7xhc")
+sky = SubResource("Sky_qtghm")
 ambient_light_color = Color(0.403922, 0.541176, 0.721569, 1)
 ambient_light_sky_contribution = 0.84
 ambient_light_energy = 2.17
@@ -67,15 +67,15 @@ material = ExtResource("1_igrc5")
 [sub_resource type="ViewportTexture" id="ViewportTexture_bmxwn"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_end88"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mxgcu"]
 seed = 61
 frequency = 0.005
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_amk6o"]
 seamless = true
-noise = SubResource("FastNoiseLite_end88")
+noise = SubResource("FastNoiseLite_mxgcu")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vna0u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uaffy"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_s72gx")
@@ -94,7 +94,7 @@ shader_parameter/dynamic_snow_mask = SubResource("ViewportTexture_bmxwn")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o08bj"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_vna0u")
+material = SubResource("ShaderMaterial_uaffy")
 subdivide_width = 256
 subdivide_depth = 256
 

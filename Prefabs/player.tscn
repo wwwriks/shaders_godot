@@ -267,7 +267,7 @@ cam = NodePath("Camera Holder/AimWobble/Camera3D")
 character = NodePath("..")
 
 [node name="Camera Holder" type="Node3D" parent="Body/Direction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999993, 0.0037628, 0, -0.0037628, 0.999993, 0, 1.48139, 0)
 
 [node name="AimWobble" type="Node3D" parent="Body/Direction/Camera Holder"]
 

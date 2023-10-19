@@ -1,0 +1,92 @@
+[gd_scene load_steps=19 format=3 uid="uid://dlq7arlde4r52"]
+
+[ext_resource type="Shader" path="res://Scripts/SnowInteractable.gdshader" id="2_37oy5"]
+[ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="3_hprj2"]
+[ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="4_kpbf3"]
+[ext_resource type="Texture2D" uid="uid://hp2k3frtcg5c" path="res://Materials/Ice/Ice003_4K-PNG_Roughness.png" id="5_e3fby"]
+[ext_resource type="Texture2D" uid="uid://bnqg3c67qslbf" path="res://Materials/Snow/snow_albedo.png" id="6_bmh8m"]
+[ext_resource type="Texture2D" uid="uid://b3y2twat1i1a1" path="res://Materials/Snow/snow_normal.png" id="7_fk783"]
+[ext_resource type="Texture2D" uid="uid://klqerem7ojqm" path="res://Materials/Snow/snow_roughness.png" id="8_6f7iy"]
+[ext_resource type="Script" path="res://Scenes/SubViewport.gd" id="10_lyy28"]
+[ext_resource type="Texture2D" uid="uid://cca5qvs620m46" path="res://Textures/dot.png" id="11_gpy4o"]
+[ext_resource type="PackedScene" uid="uid://bmgs8ihxtiv6w" path="res://Prefabs/player_optimized.tscn" id="12_cougr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vqccj"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_end88"]
+seed = 61
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k4eim"]
+seamless = true
+noise = SubResource("FastNoiseLite_end88")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vna0u"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_37oy5")
+shader_parameter/noise_strength = 15.0
+shader_parameter/uv_scale = 3.5
+shader_parameter/snow_height = 0.333
+shader_parameter/offset = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_k4eim")
+shader_parameter/snow_albedo = ExtResource("6_bmh8m")
+shader_parameter/snow_normal = ExtResource("7_fk783")
+shader_parameter/snow_roughness = ExtResource("8_6f7iy")
+shader_parameter/ice_albedo = ExtResource("3_hprj2")
+shader_parameter/ice_normal = ExtResource("4_kpbf3")
+shader_parameter/ice_roughness = ExtResource("5_e3fby")
+shader_parameter/dynamic_snow_mask = SubResource("ViewportTexture_vqccj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f61yj"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_vna0u")
+subdivide_width = 2048
+subdivide_depth = 2048
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jqh4"]
+albedo_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3fueo"]
+material = SubResource("StandardMaterial3D_5jqh4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y4ae"]
+
+[node name="Optimized World" type="Node3D"]
+
+[node name="Snow" type="MeshInstance3D" parent="."]
+transform = Transform3D(240, 0, 0, 0, 1, 0, 0, 0, 240, 0, 0, 0)
+mesh = SubResource("PlaneMesh_f61yj")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(250, 0, 0, 0, 1, 0, 0, 0, 250, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3fueo")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_6y4ae")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" node_paths=PackedStringArray("player", "paint_brush")]
+transparent_bg = true
+handle_input_locally = false
+render_target_clear_mode = 2
+render_target_update_mode = 4
+script = ExtResource("10_lyy28")
+player = NodePath("../../Player")
+world_extents = Rect2(0, 0, 480, 480)
+paint_brush = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+modulate = Color(1, 1, 1, 0.0705882)
+scale = Vector2(0.013, 0.013)
+texture = ExtResource("11_gpy4o")
+
+[node name="Player" parent="." instance=ExtResource("12_cougr")]
