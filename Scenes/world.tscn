@@ -1,11 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=34 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
 [ext_resource type="PackedScene" uid="uid://r7r8y77rokm6" path="res://Prefabs/player.tscn" id="3_20gx3"]
 [ext_resource type="Material" uid="uid://6v6wiemhsjcx" path="res://Ice_Snow.tres" id="4_ouhiq"]
-[ext_resource type="PackedScene" uid="uid://67npyw1fepsf" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
-[ext_resource type="PackedScene" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
+[ext_resource type="PackedScene" path="res://Prefabs/bust_snow.tscn" id="6_31hqs"]
+[ext_resource type="PackedScene" uid="uid://jdp2gf6ihohj" path="res://Prefabs/cargo.tscn" id="6_w8g0t"]
 [ext_resource type="Shader" path="res://Scripts/SnowInteractable.gdshader" id="7_s72gx"]
 [ext_resource type="Texture2D" uid="uid://htc5ji08fyki" path="res://Materials/Ice/Ice003_4K-PNG_Color.png" id="8_astyv"]
 [ext_resource type="Texture2D" uid="uid://bnbxj6ve6mumt" path="res://Materials/Ice/Ice003_4K-PNG_NormalGL.png" id="9_e5tor"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cca5qvs620m46" path="res://Textures/dot.png" id="15_82grn"]
 [ext_resource type="PackedScene" uid="uid://cvcshssdne54c" path="res://Prefabs/barrell.tscn" id="17_ufb0d"]
 [ext_resource type="PackedScene" uid="uid://bh1ssgigascu5" path="res://Prefabs/track.tscn" id="18_3iilh"]
+[ext_resource type="Script" path="res://Scripts/Spinner.gd" id="19_qwmry"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rpjvi"]
 panorama = ExtResource("2_u20f2")
@@ -106,6 +107,9 @@ shader = ExtResource("14_aoguu")
 lightmap_size_hint = Vector2i(17, 9)
 material = SubResource("ShaderMaterial_27q47")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2gf5"]
+size = Vector3(4.4905, 3.94238, 10.4046)
+
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120926, 0.00727379, -0.00147629)
 
@@ -169,11 +173,125 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39371, 1.24075, 0)
 visible = false
 mesh = SubResource("SphereMesh_t33ao")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="barrell" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -12.0307, 3.22674, -6.1295)
+
+[node name="barrell2" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(0.218, -1.23066, 0.0213956, -0.00321175, 0.0211598, 1.24982, -1.23084, -0.218023, 0.000528216, -11.3168, 3.56975, -6.66577)
+
+[node name="barrell3" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(-1.05349, 0, 0.672802, 0, 1.25, 0, -0.672802, 0, -1.05349, -9.18314, 3.22674, -9.90255)
+
+[node name="barrell4" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(-0.303567, 0, -1.21258, 0, 1.25, 0, 1.21258, 0, -0.303567, -9.06776, 3.22674, -10.689)
+
+[node name="barrell5" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(-0.723639, 2.43005e-08, 1.01924, -1.01924, -1.72529e-08, -0.723639, 7.78379e-16, -1.25, 2.98023e-08, -8.37358, 3.62674, -10.1746)
+
+[node name="barrell6" parent="Environment" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(-5.46392e-08, 1.25, 0, -0.24367, -1.06512e-08, 1.22602, 1.22602, 5.3591e-08, 0.24367, -7.50102, 3.53886, -12.0088)
+
+[node name="Tracks" type="Node3D" parent="Environment"]
+transform = Transform3D(0.923358, 0, -0.383941, 0, 1, 0, 0.383941, 0, 0.923358, 6.3524, 1.90735e-06, -26.0135)
+
+[node name="tracks" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+
+[node name="tracks2" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -2.5)
+
+[node name="tracks3" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -5)
+
+[node name="tracks4" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -7.5)
+
+[node name="tracks5" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -9.99467)
+
+[node name="tracks6" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -12.4947)
+
+[node name="tracks7" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -14.9947)
+
+[node name="tracks8" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -17.4947)
+
+[node name="tracks9" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 19.9855)
+
+[node name="tracks10" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 17.4855)
+
+[node name="tracks11" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 14.9855)
+
+[node name="tracks12" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 12.4855)
+
+[node name="tracks13" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 9.99082)
+
+[node name="tracks14" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 7.49082)
+
+[node name="tracks15" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 4.99082)
+
+[node name="tracks16" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 2.49081)
+
+[node name="tracks17" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 39.9758)
+
+[node name="tracks18" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 37.4758)
+
+[node name="tracks19" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 34.9758)
+
+[node name="tracks20" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 32.4758)
+
+[node name="tracks21" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 29.9811)
+
+[node name="tracks22" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 27.4811)
+
+[node name="tracks23" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 24.9811)
+
+[node name="tracks24" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 22.4811)
+
+[node name="tracks25" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 59.9612)
+
+[node name="tracks26" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 57.4612)
+
+[node name="tracks27" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 54.9612)
+
+[node name="tracks28" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 52.4612)
+
+[node name="tracks29" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 49.9666)
+
+[node name="tracks30" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 47.4666)
+
+[node name="tracks31" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 44.9666)
+
+[node name="tracks32" parent="Environment/Tracks" instance=ExtResource("18_3iilh")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 42.4666)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = -262.0
-offset_right = -6.0
+offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" node_paths=PackedStringArray("player", "paint_brush")]
@@ -192,119 +310,17 @@ modulate = Color(1, 1, 1, 0.0705882)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("15_82grn")
 
-[node name="barrell" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -12.0307, 3.22674, -6.1295)
+[node name="Spinner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.969, -5.59336)
+script = ExtResource("19_qwmry")
+axis = Vector3(1, 2, 1)
+angle = 2.0
 
-[node name="barrell2" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(0.218, -1.23066, 0.0213956, -0.00321175, 0.0211598, 1.24982, -1.23084, -0.218023, 0.000528216, -11.3168, 3.56975, -6.66577)
+[node name="barrell6" parent="Spinner" instance=ExtResource("17_ufb0d")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.5, 0)
 
-[node name="barrell3" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(-1.05349, 0, 0.672802, 0, 1.25, 0, -0.672802, 0, -1.05349, -9.18314, 3.22674, -9.90255)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="barrell4" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(-0.303567, 0, -1.21258, 0, 1.25, 0, 1.21258, 0, -0.303567, -9.06776, 3.22674, -10.689)
-
-[node name="barrell5" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(-0.723639, 2.43005e-08, 1.01924, -1.01924, -1.72529e-08, -0.723639, 7.78379e-16, -1.25, 2.98023e-08, -8.37358, 3.62674, -10.1746)
-
-[node name="barrell6" parent="." instance=ExtResource("17_ufb0d")]
-transform = Transform3D(-5.46392e-08, 1.25, 0, -0.24367, -1.06512e-08, 1.22602, 1.22602, 5.3591e-08, 0.24367, -7.50102, 3.53886, -12.0088)
-
-[node name="Tracks" type="Node3D" parent="."]
-transform = Transform3D(0.923358, 0, -0.383941, 0, 1, 0, 0.383941, 0, 0.923358, 6.3524, 1.90735e-06, -26.0135)
-
-[node name="tracks" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
-
-[node name="tracks2" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -2.5)
-
-[node name="tracks3" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -5)
-
-[node name="tracks4" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -7.5)
-
-[node name="tracks5" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -9.99467)
-
-[node name="tracks6" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -12.4947)
-
-[node name="tracks7" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -14.9947)
-
-[node name="tracks8" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -17.4947)
-
-[node name="tracks9" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 19.9855)
-
-[node name="tracks10" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 17.4855)
-
-[node name="tracks11" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 14.9855)
-
-[node name="tracks12" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 12.4855)
-
-[node name="tracks13" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 9.99082)
-
-[node name="tracks14" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 7.49082)
-
-[node name="tracks15" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 4.99082)
-
-[node name="tracks16" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 2.49081)
-
-[node name="tracks17" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 39.9758)
-
-[node name="tracks18" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 37.4758)
-
-[node name="tracks19" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 34.9758)
-
-[node name="tracks20" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 32.4758)
-
-[node name="tracks21" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 29.9811)
-
-[node name="tracks22" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 27.4811)
-
-[node name="tracks23" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 24.9811)
-
-[node name="tracks24" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 22.4811)
-
-[node name="tracks25" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 59.9612)
-
-[node name="tracks26" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 57.4612)
-
-[node name="tracks27" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 54.9612)
-
-[node name="tracks28" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 52.4612)
-
-[node name="tracks29" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 49.9666)
-
-[node name="tracks30" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 47.4666)
-
-[node name="tracks31" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 44.9666)
-
-[node name="tracks32" parent="Tracks" instance=ExtResource("18_3iilh")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 42.4666)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 8.31141e-06, -1.53026e-05, -1.48027e-05, 0.868562, -0.495581, 9.17232e-06, 0.495581, 0.868562, -2.4761e-05, -1.52621, 0.303197)
+shape = SubResource("BoxShape3D_l2gf5")
