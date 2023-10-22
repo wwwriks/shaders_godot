@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dcwtp1i3iy2ha"]
+[gd_scene load_steps=33 format=3 uid="uid://dcwtp1i3iy2ha"]
 
 [ext_resource type="Material" uid="uid://du25jseyrdtks" path="res://Materials/Ice.tres" id="1_igrc5"]
 [ext_resource type="Texture2D" uid="uid://dkoms20p7mbd4" path="res://Textures/HDRIs/snow_field_puresky_4k.exr" id="2_u20f2"]
@@ -96,8 +96,8 @@ shader_parameter/dynamic_snow_mask = SubResource("ViewportTexture_bmxwn")
 [sub_resource type="PlaneMesh" id="PlaneMesh_o08bj"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_uaffy")
-subdivide_width = 256
-subdivide_depth = 256
+subdivide_width = 1024
+subdivide_depth = 1024
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_27q47"]
 render_priority = 0
@@ -106,9 +106,6 @@ shader = ExtResource("14_aoguu")
 [sub_resource type="SphereMesh" id="SphereMesh_t33ao"]
 lightmap_size_hint = Vector2i(17, 9)
 material = SubResource("ShaderMaterial_27q47")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_l2gf5"]
-size = Vector3(4.4905, 3.94238, 10.4046)
 
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120926, 0.00727379, -0.00147629)
@@ -318,9 +315,3 @@ angle = 2.0
 
 [node name="barrell6" parent="Spinner" instance=ExtResource("17_ufb0d")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.5, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 8.31141e-06, -1.53026e-05, -1.48027e-05, 0.868562, -0.495581, 9.17232e-06, 0.495581, 0.868562, -2.4761e-05, -1.52621, 0.303197)
-shape = SubResource("BoxShape3D_l2gf5")
